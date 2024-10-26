@@ -1,17 +1,2 @@
-<div *ngFor="let product of products" class="product">
-  <img [src]="product.imageUrl"/>
-  <span class="product-description">{{ product.description }}</span>
-  <div class="product-info">
-    <span class="price">{{ product.price | currency: 'EUR' }}</span>
-    <div class="delivery-container">
-      <span *ngIf="getStockAvailability(product) !== 'out-of-stock'" class="delivery-costs">
-        Delivery costs: {{ getDeliveryCost(product) | currency: 'EUR' }}
-      </span>
-      <ng-container [ngSwitch]="getStockAvailability(product)">
-        <span *ngSwitchCase="'in-stock'" class="stock-availability in-stock">In Stock</span>
-        <span *ngSwitchCase="'low-stock'" class="stock-availability low-stock">Low Stock</span>
-        <span *ngSwitchCase="'out-of-stock'" class="stock-availability out-of-stock">Out of Stock</span>
-      </ng-container>
-    </div>
-  </div>
-</div>
+<app-product-item *ngFor="let item of items$ | async" [item]="item">
+</app-product-item>
